@@ -28,6 +28,17 @@ body {
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'ChunkFiveRegular';
+    src: url('/assets/fonts/Chunkfive-webfont.eot');
+    src: url('/assets/fonts/Chunkfive-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/assets/fonts/Chunkfive-webfont.woff') format('woff'),
+         url('/assets/fonts/Chunkfive-webfont.ttf') format('truetype'),
+         url('/assets/fonts/Chunkfive-webfont.svg#ChunkFiveRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .navbar .brand {
 	font-family: 'LillyRegular', Arial, sans-serif;
 	padding: 10px 20px;
@@ -40,4 +51,48 @@ body {
 
 .navbar .nav .active > a, .navbar .nav .active > a:hover {
 	background-color: #4289A1;
+}
+
+#main > h1 {
+	text-align: center;
+	line-height: 1.2;
+	font-family: 'ChunkFiveRegular', Arial, sans-serif;
+	color: #333;
+	font-weight: normal;
+	text-shadow: 0 1px 1px #fff;
+	margin: 40px 0;
+}
+
+/* Landscape phones and down */
+@media (max-width: 480px) {
+	#main > h1 {
+		font-size: 38px;
+	}
+}
+
+@media (min-width: 481px) and (max-width: 520px) {
+	#main > h1 {
+		font-size: 38px;
+	}
+}
+
+/* Landscape phone to portrait tablet */
+@media (min-width: 481px) and (max-width: 768px) {
+	#main > h1 {
+		font-size: 42px;
+	}
+}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 769px) and (max-width: 980px) {
+	#main > h1 {
+		font-size: 56px;
+	}
+}
+
+/* Large desktop */
+@media (min-width: 981px) {
+	#main > h1 {
+		font-size: 70px;
+	}
 }

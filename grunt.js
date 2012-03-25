@@ -100,8 +100,8 @@ module.exports = function(grunt) {
 			done = this.async();
 
 		file.write('config.js', content.replace(startingVersion, config.get('version')));
-		grunt.log.ok('touching: ' + touchFiles.join(' '));
-		shell.exec('touch ' + touchFiles.join(' '));
+		//grunt.log.ok('touching: ' + touchFiles.join(' '));
+		//shell.exec('touch ' + touchFiles.join(' '));
 
 		grunt.log.ok('Deployment generation successful!');
 	});
