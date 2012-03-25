@@ -14,6 +14,7 @@ module.exports = function(grunt) {
 		deployRoot = config.get('deployRoot'),
 		jsRoot = config.get('jsRoot'),
 		cssRoot = config.get('cssRoot'),
+		touchFiles = [],
 		startingVersion;
 
 	grunt.registerTask('deploy', function (revision) {
@@ -87,6 +88,8 @@ module.exports = function(grunt) {
 		for (i = 0, il = destinations.length; i < il; i++) {
 			content = file.read(destinations[i]);
 			file.write(destinations[i] + '.gz', grunt.helper('gzip', content));
+			touchFiles.push(destinations[i]);
+			touchFiles.push(destinations[i] + '.gz');
 		}
 
 		grunt.log.ok('Files gzipped successfully.');
@@ -97,16 +100,11 @@ module.exports = function(grunt) {
 			done = this.async();
 
 		file.write('config.js', content.replace(startingVersion, config.get('version')));
+		grunt.log.ok('touching: ' + touchFiles.join(' '));
+		shell.exec('touch ' + touchFiles.join(' '));
 
-		shell.exec('cd ~/threetasks-deploy');
-		shell.exec('git add . && git rm .');
-		shell.exec('git commit -m "Deployment"');
-		shell.exec('git push origin deploy');
-
-		shell.exec('ssh -t -t -i ~/nodejs.pem ec2-user@ec2-50-19-208-51.compute-1.amazonaws.com');
-		shell.exec('cd /var/www/threetasks/');
-		shell.exec('git pull origin deploy');
+		grunt.log.ok('Deployment generation successful!');
 	});
 
-	grunt.registerTask('main', 'lint build-dirs build-index min min-css gzip-all finalize');
+	grunt.registerTask('main', 'lint build-dirs build-index min min-css finalize');
 };

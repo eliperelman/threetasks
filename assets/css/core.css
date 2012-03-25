@@ -5,6 +5,12 @@ body {
 .navbar-inner {
 	background-color: #215A6D;
 	background-image: -moz-linear-gradient(center top, #4289A1, #215A6D);
+	background-image: -ms-linear-gradient(top, #4289a1, #215a6d);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#4289a1), to(#215a6d));
+	background-image: -webkit-linear-gradient(top, #4289a1, #215a6d);
+	background-image: -o-linear-gradient(top, #4289a1, #215a6d);
+	background-image: linear-gradient(top, #4289a1, #215a6d);
+	background-repeat: repeat-x;
 }
 
 .navbar .nav > li > a {
