@@ -64,22 +64,16 @@ body {
 }
 
 /* Landscape phones and down */
-@media (max-width: 480px) {
+@media (max-width: 480px), (-webkit-min-device-pixel-ratio: 2) {
 	#main > h1 {
-		font-size: 38px;
-	}
-}
-
-@media (min-width: 481px) and (max-width: 520px) {
-	#main > h1 {
-		font-size: 38px;
+		font-size: 28px;
 	}
 }
 
 /* Landscape phone to portrait tablet */
 @media (min-width: 481px) and (max-width: 768px) {
 	#main > h1 {
-		font-size: 42px;
+		font-size: 36px;
 	}
 }
 
