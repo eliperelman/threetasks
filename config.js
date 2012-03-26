@@ -15,7 +15,7 @@ module.exports = (function () {
 		],
 
 		config = {
-			version: '0.2.2',
+			version: '0.2.10',
 			jsRoot: jsRoot,
 			cssRoot: cssRoot,
 			deployRoot: deployRoot,

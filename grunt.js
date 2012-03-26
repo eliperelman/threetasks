@@ -83,13 +83,18 @@ module.exports = function(grunt) {
 				config.get('min').dist.dest,
 				config.get('cssMin').dist.dest
 			],
-			i, il, content;
+			current, currentGzip, i, il, content, gzipContent;
 
 		for (i = 0, il = destinations.length; i < il; i++) {
-			content = file.read(destinations[i]);
-			file.write(destinations[i] + '.gz', grunt.helper('gzip', content));
-			touchFiles.push(destinations[i]);
-			touchFiles.push(destinations[i] + '.gz');
+			current = destinations[i];
+			currentGzip = current + '.gz';
+			content = file.read(current);
+
+			gzipContent = grunt.helper('gzip', content);
+
+			file.write(currentGzip, gzipContent);
+			touchFiles.push(current);
+			touchFiles.push(currentGzip);
 		}
 
 		grunt.log.ok('Files gzipped successfully.');
@@ -100,8 +105,10 @@ module.exports = function(grunt) {
 			done = this.async();
 
 		file.write('config.js', content.replace(startingVersion, config.get('version')));
-		//grunt.log.ok('touching: ' + touchFiles.join(' '));
-		//shell.exec('touch ' + touchFiles.join(' '));
+
+		if (touchFiles.length) {
+			shell.exec('touch ' + touchFiles.join(' '));
+		}
 
 		grunt.log.ok('Deployment generation successful!');
 	});
